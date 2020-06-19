@@ -1,0 +1,69 @@
+background no
+use_xft yes
+#font Sans:size=8
+xftfont Sans:size=8
+xftalpha 0.9
+update_interval 5
+total_run_times 0
+own_window yes
+own_window_type normal
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+double_buffer yes
+minimum_size 220 5
+maximum_width 220
+draw_shades yes
+draw_outline no
+draw_borders no
+draw_graph_borders yes
+default_color white
+default_shade_color black
+default_outline_color green
+alignment top_left
+gap_x 12
+gap_y 25
+no_buffers yes
+uppercase no
+cpu_avg_samples 2
+override_utf8_locale yes
+uppercase no # set to yes if you want all text to be in uppercase
+
+own_window_argb_value 0
+own_window_argb_visual yes
+own_window_colour 000000
+TEXT
+MAC Address${hr 1}${voffset 7}
+Eth0${voffset 3}
+Current MAC: ${alignr} ${execi 7 macchanger eth0 | grep Current | cut -c16-32}${voffset 3}
+Permanent MAC: ${alignr}fc:45:96:8b:64:f4${voffset 2}
+
+Wlan0${voffset 3}
+Current MAC: $alignr${execi 7 macchanger wlan0 | grep Current | cut -c16-32}${voffset 3}
+Permanent MAC: ${alignr}c8:3d:d4:a2:13:9f${voffset 2}
+
+Wlan1${voffset 3}
+Current MAC: $alignr${execi 7 macchanger wlan1 | grep Current | cut -c16-32}${voffset 3}
+Permanent MAC: ${alignr}98:3f:9f:19:03:d2${voffset 16}
+IP Info ${hr 1}${voffset 5}
+Local IP  eth0: ${alignr}${addr eth0}${voffset 3}
+Local IP  wlan0: ${alignr}${addr wlan0}${voffset 3}
+Local IP  wlan1: ${alignr}${addr wlan1}${voffset 16}
+Wlan0-AP${hr 1}${voffset 5}
+Name-AP: ${alignr}${wireless_essid wlan0}${voffset 3}
+MAC-AP: ${alignr}${wireless_ap wlan0}${voffset 3}
+Wireless signal: ${alignr}${wireless_link_qual wlan0}%${voffset 3}
+WiFi Speed: ${alignr}${wireless_bitrate wlan0}${voffset 16}
+Wlan1-AP${hr 1}${voffset 5}
+Name-AP: ${alignr}${wireless_essid wlan1}${voffset 3}
+MAC-AP: ${alignr}${wireless_ap wlan1}${voffset 3}
+Wireless signal: ${alignr}${wireless_link_qual wlan1}%${voffset 3}
+wifi Speed: ${alignr}${wireless_bitrate wlan1}${voffset 16}
+NordVPN${hr 1}${voffset 5}
+Status: ${alignr}${execi 20 nordvpn status | grep Status | cut -d: -f2}${voffset 3}
+Country: ${alignr}${execi 20 nordvpn status | grep Country | cut -d: -f2}${voffset 3}
+City: ${alignr}${execi 20 nordvpn status | grep City | cut -d: -f2}${voffset 3}
+My New IP: ${alignr}${execi 20 nordvpn status | grep 'Your new IP' | cut -d: -f2}${voffset 16}
+Rhythmbox${hr 1}${voffset 5}
+${exec rhythmbox-client --no-start --print-playing-format %tt | cut -c1-22}  ${alignr}${exec rhythmbox-client --no-start --print-playing-format=%te} / ${exec rhythmbox-client --no-start --print-playing-format=%td}${voffset 16}
+Vocabulary${hr 1}${voffset 5}
+${exec python3 eng.py}${voffset 16}
