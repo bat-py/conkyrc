@@ -1,1 +1,2 @@
 # conkyrc
+Hello my friends
